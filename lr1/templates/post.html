@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mb-3">{{ post.title }}</h1>
+    <h5>{{ post.author }}, {{ post.date.strftime('%d.%m.%Y') }}</h5>
+
+    <div class="container d-flex justify-content-center mt-3 mb-5">
+        <img class="w-75" src="{{ url_for('static', filename='images/' + post.image_id) }}" alt="Post image">
+    </div>
+
+    <div class="mb-5">
+        {{ post.text }}
+    </div>
+
+    <div class="border">
+        <p class="m-0 px-4 py-3 bg-light">Оставьте комментарий</p>
+    </div>
+    <form action="" class="border p-4 mb-4">
+        <div class="mb-3">
+            <textarea class="form-control" id="commentWriteArea" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg">Отправить</button>
+    </form>
+
+    {% for comment in post.comments %}
+        <div class="d-flex flex-start mb-4">
+            <a>
+                <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="profile picture" class="rounded-circle shadow-1-strong me-3" width="65" height="65">
+            </a>
+            <div class="flex-grow-1 flex-shrink-1">
+                <div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <p class="mb-1 fw-bold">{{ comment.author }}</p>
+                    </div>
+                    <p class="small mb-0"> {{ comment.text }} </p>
+                </div>
+                {% for reply in comment.replies %}
+                    <div class="d-flex flex-start mt-4">
+                        <div>
+                            <img src="{{ url_for('static', filename='images/avatar.jpg') }}" alt="profile picture" class="rounded-circle shadow-1-strong me-3" width="65" height="65">
+                        </div>
+                        <div class="flex-grow-1 flex-shrink-1">
+                            <div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <p class="mb-1 fw-bold">{{ reply.author }}</p>
+                                </div>
+                                <p class="small mb-0"> {{ reply.text }} </p>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
