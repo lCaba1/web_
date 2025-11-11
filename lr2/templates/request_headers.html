@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Заголовки запроса</h1>
+
+    {% for key, value in headers.items() %}
+        <p>{{ key }}: {{ value }}</p>
+    {% endfor %}
+{% endblock %}

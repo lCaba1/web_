@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Параметры формы</h1>
+
+    <form method="POST">
+        <label>form_data</label>
+        <input name="form_data" value="{{ form.get('form_data', '') }}">
+        <button type="submit">Ok</button>
+    </form>
+
+    {% for key, value in form.items() %}
+        <p>{{ key }} | {{ value }}</p>
+    {% endfor %}
+{% endblock %}

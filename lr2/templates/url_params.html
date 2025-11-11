@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Параметры URL</h1>
+
+    {% for key, value in params.items() %}
+        <p>{{ key }}={{ value }}</p>
+    {% endfor %}
+    
+{% endblock %}

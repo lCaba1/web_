@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Форма с обработкой ошибок</h1>
+
+    <form method="POST">
+        <label>phone_number</label>
+        <input name="phone_number" class="{{ '' if is_valid else 'is-invalid' }}"
+            value="{{ response if is_valid else form.get('phone_number', '') }}" required>
+        <button type="submit">Проверить</button>
+        <div class="invalid-feedback">
+            {{ response }}
+        </div>
+    </form>
+{% endblock %}
