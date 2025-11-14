@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% from 'users/form.html' import user_form %}
+
+{% block content %}
+    <h1 class="mb-3">Редактирование записи</h1>
+
+    {{ user_form(roles, 'edit', current_user, user_data, errors) }}
+{% endblock %}

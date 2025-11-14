@@ -1,0 +1,25 @@
+{% macro report_template(column_name, statistics, field) %}
+    <div class="container-sm">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th scope="col">№</th>
+                <th scope="col">{{ column_name }}</th>
+                <th scope="col">Количество посещений</th>
+            </tr>
+            </thead>
+            <tbody>
+                {% for stat in statistics %}
+                    <tr>
+                        <th scope="row">{{ loop.index }}</th>
+                        <td>{{ stat[field] }}</td>
+                        <td>{{ stat.number_of_visits }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <form method="post">
+            <button type="submit" class="btn btn-primary">Экспорт в CVS</button>
+        </form>
+    </div>
+{% endmacro %}

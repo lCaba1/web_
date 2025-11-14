@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% from 'reports/report_template.html' import report_template %}
+
+{% block content %}
+    <h1>Статистика по пользователям</h1>
+
+    {{ report_template('Пользователь', statistics, 'user_full_name') }}
+{% endblock %}
